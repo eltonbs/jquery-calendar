@@ -2,15 +2,137 @@
 <html lang="en" data-framework="javascript">
 	<head>
 		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>Calendar App</title>
-		<link rel="stylesheet" href="css/fullcalendar.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/fullcalendar.min.css">
+		<link rel="stylesheet" href="css/tempusdominus.min.css">
+		<link rel="stylesheet" href="css/fa-all.min.css">
 		<link rel="stylesheet" href="css/calendar.css">
 	</head>
 	<body>
-		<div id="calendar"></div>
+		<div class="container-fluid">
+			<div id="calendar"></div>
+			
+			<div class="modal fade" id="event-modal" tabindex="-1" role="dialog" aria-labelledby="event-modal-label" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="event-modal-label">Modal title</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<form id="event-form">
+							<div class="modal-body">
+								<div class="row">
+									<div class="col-sm-12">
+										<div id="form-alert" class="alert alert-danger text-center d-none" role="alert">
+											<span id="form-alert-text"></span>
+										</div>
+									</div>
+								</div>
+								<input id="form-id" name="id" type="hidden"/>
+								<input id="form-date" name="date" type="hidden"/>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<div class="input-group date" id="start-picker" data-target-input="nearest">
+												<div class="input-group-append" data-target="#start-picker" data-toggle="datetimepicker">
+													<span class="input-group-text"><i class="far fa-clock"></i></span>
+												</div>
+												<input
+													id="form-time-start"
+													name="startTime"
+													type="text" 
+													class="form-control datetimepicker-input" 
+													data-target="#start-picker"
+													placeholder="Start"
+													autocomplete="off"
+													required
+												/>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<div class="input-group date" id="end-picker" data-target-input="nearest">
+												<div class="input-group-append" data-target="#end-picker" data-toggle="datetimepicker">
+													<span class="input-group-text"><i class="far fa-clock"></i></span>
+												</div>
+												<input
+													id="form-time-end"
+													name="endTime"
+													type="text" 
+													class="form-control datetimepicker-input" 
+													data-target="#end-picker"
+													placeholder="End"
+													autocomplete="off"
+													required
+												/>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="form-group">
+											<input
+												id="form-title"
+												name="title"
+												class="form-control"
+												type="text"
+												placeholder="Title"
+												required
+											/>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="form-group">
+											<textarea id="form-description" name="description" placeholder="Description" class="form-control" rows="6"></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button id="confirm-delete-button" type="button" class="btn btn-danger d-none">Delete</button>
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+								<button id="save-button" type="submit" class="btn btn-primary">Save</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal fade" id="confirm-delete-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal-label" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="confirm-delete-modal-label">Delete appointment</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							Are you sure you want to delete this appointment?
+						</div>
+						<div class="modal-footer">
+							<button id="cancel-delete-button" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+							<button id="delete-button" type="button" class="btn btn-danger">Delete</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.bundle.min.js"></script>
 		<script src="js/moment.js"></script>
-		<script src="js/fullcalendar.js"></script>
+		<script src="js/fullcalendar.min.js"></script>
+		<script src="js/jquery.inputmask.bundle.min.js"></script>
+		<script src="js/tempusdominus.min.js"></script>
 		<script src="js/calendar.js"></script>
 	</body>
 </html>
